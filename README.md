@@ -1,2 +1,2 @@
 # living-clojure
-Code exercises fo Carin Meyers "Living Clojure"
+Code exercises fo Carin Meier's "Living Clojure"
