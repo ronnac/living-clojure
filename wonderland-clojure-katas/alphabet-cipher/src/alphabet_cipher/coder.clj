@@ -1,19 +1,11 @@
 
 (ns alphabet-cipher.coder)
 
-
-;(int \b)
-;(char (- (reduce + (map int "ah")) 96))
-
-;(char (+ 97 (mod (reduce + -194 (map int "ba")) 26)))
-
 ;letter to integer
 (defn letter-to-int [t]
    (- (int t) 97))
 
 (def l2i (memoize letter-to-int))
-
-;(l2i \z)
 
 ;integer to letter
 (defn int-to-letter [i]
@@ -21,18 +13,6 @@
 
 (def i2l (memoize int-to-letter))
 ;(i2l 25)
-
-;(defn add-or-sub [a b op]
-;  (op a b))
-
-;(add-or-sub 4 3 +)
-;(add-or-sub 4 3 -)
-
-;(map l2i "hello")
-
-;(encode-pair "ms")
-;(decode-pair "es")
-;(first "qf")
 
 (defn codec-pair*  [s op]
     (i2l 
@@ -42,23 +22,6 @@
        26)))
 
 (def codec-pair (memoize codec-pair*))
-
-;(defn encode-pair [s]
-;  (codec-pair s +))
-
-;(defn decode-pair [s]
-;  (codec-pair s -))
-
-;(codec-pair "es" -)
-
-;(interleave "hello" "codeword")
-
-;(interleave "hello" (cycle "code"))
-
-;(partition 2 (interleave "hello" (cycle "code")))
-
-;(map encode-pair (partition 2 (interleave "hello" (cycle "code"))))
-
 
 (defn codec [keyword message op]
   (apply str 
@@ -82,61 +45,7 @@
 
 
 ;un-cycle this: vigilancevigilancevigilancevi
-
-(def cyclic "vigilancevigilancevigilancevi")
-
-;(= true true false false)
-
-;(reduce = true [true false])
-
-
-;(partition 2 
-;  (interleave 
-;  "abcdabcd" 
-;  (take 8 (cycle "abc")))
-
-;(map (fn [[a b]] (= a b)) 
-;    (partition 2 
-;    (interleave 
-;    "abcdabcd" 
-;    (take 8 (cycle "abc"))))
-
-;(reduce #(and %1 %2) 
-;     (map (fn [[a b]] (= a b)) 
-;      (partition 2 
-;      (interleave 
-;      "abcdabcd" 
-;      (take 8 (cycle "abc"))))
-
-;(defn compare-cyclic [simple repetitive]
-;  (reduce #(and %1 %2) 
-;    (map (fn [[a b]] (= a b)) 
-;      (partition 2 
-;        (interleave 
-;          repetitive 
-;          (take 
-;            (count repetitive)
-;            (cycle simple)))))))
-
-;(compare-cyclic "abc" "abcabca")
-;(compare-cyclic "abc" "abcac")
-;(compare-cyclic "vig" cyclic)
-;(compare-cyclic (take 3 cyclic) cyclic)
-;(compare-cyclic (subs cyclic 0 3) cyclic)
-;(subs cyclic 0 3)
-
-
-;(defn uncycle-old [cyclic]
-;  (loop [i 1]
-;   (if (compare-cyclic  
-;         (take i cyclic)
-;         cyclic)
-;     (subs cyclic 0 i)
-;     (recur (inc i)))))
-  
-
-;(defn decipher-old [cipher message]
-;  (uncycle (decode message cipher)))
+;(def cyclic "vigilancevigilancevigilancevi")
 
 
 (defn uncycle [cyclic cipher message]
